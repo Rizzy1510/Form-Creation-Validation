@@ -1,0 +1,40 @@
+<script>
+    const form = document.getElementById("myForm");
+    const message = document.getElementById("message");
+
+    form.addEventListener("submit", function (event) {
+      event.preventDefault(); // Prevent actual form submission
+
+      // Get form values
+      const username = document.getElementById("username").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value.trim();
+
+      let errorMessages = [];
+
+      // Validate username
+      if (username.length < 3) {
+        errorMessages.push("Username must be at least 3 characters long.");
+      }
+
+      // Validate email
+      if (email.indexOf("@") === -1 || email.indexOf(".") === -1) {
+        errorMessages.push("Please enter a valid email address.");
+      }
+
+      // Validate password
+      if (password.length < 6) {
+        errorMessages.push("Password must be at least 6 characters long.");
+      }
+
+     // Display result
+      if (errorMessages.length > 0) {
+        message.innerHTML = errorMessages.join("<br>");
+        message.className = "message error";
+      } else {
+        message.innerHTML = "✅ Registration successful!";
+        message.className = "message success";
+        form.reset();
+      }
+    });
+  </script>
